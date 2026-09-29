@@ -6,8 +6,6 @@ workflows:
     environment:
       flutter: 3.22.2
       java: 17
-      groups:
-        - google_play
     scripts:
       - name: Fix Gradle
         script: |
