@@ -9,9 +9,14 @@ workflows:
       groups:
         - google_play
     scripts:
+      - name: Fix Gradle
+        script: |
+          sed -i '' 's/1.7.10/1.9.22/g' android/settings.gradle || true
+          sed -i '' 's/7.3.0/8.3.0/g' android/settings.gradle || true
+          sed -i '' 's/7.6.3/8.5/g' android/gradle/wrapper/gradle-wrapper.properties || true
       - name: Get packages
         script: flutter pub get
       - name: Build APK
-        script: flutter build apk --debug
+        script: flutter build apk --release --no-tree-shake-icons
     artifacts:
       - build/app/outputs/**/*.apk
